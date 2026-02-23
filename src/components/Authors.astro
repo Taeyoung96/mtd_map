@@ -6,24 +6,41 @@ interface Props {
 }
 
 const { authors } = Astro.props;
+
+// Group authors by institution
+const groupedAuthors = authors.reduce((acc, author) => {
+  const institution = author.institution || "";
+  if (!acc[institution]) {
+    acc[institution] = [];
+  }
+  acc[institution].push(author);
+  return acc;
+}, {} as Record<string, Author[]>);
 ---
 
-<div class="links flex flex-row flex-wrap justify-center gap-x-8 gap-y-4">
+<div class="links flex flex-col items-center gap-4">
   {
-    authors.map((author) => (
+    Object.entries(groupedAuthors).map(([institution, authors]) => (
       <div class="flex flex-col items-center text-center">
-        <div class="flex flex-row text-xl">
-          {author.url ? <a href={author.url}>{author.name}</a> : author.name}
-          {author.notes && (
-            <sup class="text-xl">
-              {author.notes.map(
-                (note, index, array) =>
-                  note + (index < array.length - 1 ? "," : ""),
-              )}
-            </sup>
-          )}
+        <div class="flex flex-row flex-wrap justify-center gap-x-4 text-xl">
+          {
+            authors.map((author, index) => (
+              <>
+                {author.url ? <a href={author.url}>{author.name}</a> : author.name}
+                {author.notes && (
+                  <sup class="text-xl">
+                    {author.notes.map(
+                      (note, noteIndex, noteArray) =>
+                        note + (noteIndex < noteArray.length - 1 ? "," : ""),
+                    )}
+                  </sup>
+                )}
+                {index < authors.length - 1 && <span>, </span>}
+              </>
+            ))
+          }
         </div>
-        {author.institution && <div>{author.institution}</div>}
+        {institution && <div>{institution}</div>}
       </div>
     ))
   }
