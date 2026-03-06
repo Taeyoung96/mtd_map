@@ -1,5 +1,5 @@
 ---
-"title": "MTD-Map: Single-stage Dynamic Object Removal and Change Detection Framework via Mixture Transition Distribution"
+"title": "MTD-Map: Single-Stage<br/>Long-Term LiDAR Map Maintenance Framework<br/>via Mixture Transition Distribution"
 authors:
   - name: TaeYoung Kim
     url: https://github.com/Taeyoung96
@@ -36,7 +36,7 @@ links:
 theme: light
 
 # This is the icon that appears in the user's browser tab. To customize, change the favicon.svg file in /public/, or add your own file to /public/ and change the filename here.
-favicon: favicon.svg
+favicon: mtd-map-logo.png
 
 # These keys are optional. If a link to your project page is in a Google search result, text message, or social media post, it will often appear as a "link preview card" based on its title, description, favicon, and thumbnail. After you publish your page, you can double check that these previews look right using [this tool](https://linkpreview.xyz/)
 description: Simple project page template for your research paper, built with Astro and Tailwind
@@ -61,32 +61,56 @@ import outside from "./assets/outside.mp4";
 import dogsDiffc from "./assets/dogs-diffc.png"
 import dogsTrue from "./assets/dogs-true.png"
 import dogsMsillm from "@/assets/dogs-msillm.jpg"
+import figOverview from "./assets/fig_overview.png"
+import mtdmap from "./assets/mtdmap.png"
+import mtdmapWoDynamic from "./assets/mtdmap_wo_dynamic.png"
 
-<Video src={outside} />
+<div class="text-center">
+
+***TL;DR : A single-stage LiDAR map maintenance framework <br/> unifying dynamic object removal and change detection <br/> via Mixture Transition Distribution.***
+
+</div>
 
 <HighlightedSection>
 
 ## Abstract
 
-This is a template you can use to create a professional project page for your research paper. [See the code for the template and instructions on how to use it yourself on GitHub](https://github.com/RomanHauksson/academic-project-astro-template). It's made with the [Astro web framework](https://astro.build/) and styled with [Tailwind](https://tailwindcss.com/). You write the content in [MDX](https://mdxjs.com/), which enables markdown formatting like **bold**, _italics_, and ~strikethrough~, as well as custom components like <SmallCaps>small caps.</SmallCaps>
+While robust map maintenance has advanced
+significantly, existing studies have focused on specific tasks,
+especially dynamic object removal or change detection. In
+this paper, we take a holistic view of the map maintenance
+problem and propose **MTD-Map**, a single-stage framework that
+handles both dynamic object removal and change detection
+without separate task-specific modules. MTD-Map employs an
+explicit representation that compactly encodes the direction and
+duration of occupancy transitions through Mixture Transition
+Distribution (MTD) modeling. We develop a recursive MTD
+formulation that encodes historical occupancy patterns into an
+augmented state to capture high-order temporal dependencies.
+Furthermore, a stability-driven adaptive strategy balances noise
+suppression with the preservation of quasi-static structures.
+Extensive experiments verify that MTD-Map robustly removes
+dynamic objects and achieves competitive change detection
+performance, subsequently reducing computational costs.
 
 </HighlightedSection>
 
-## Visuals
+## System Overview
 
-### Picture
+<Figure>
+  <Picture slot="figure" src={figOverview} alt="MTD-Map System Overview" />
+  <Fragment slot="caption">MTD-Map infers structural persistence from LiDAR streams by maintaining an augmented voxel state, updated via a stability-driven adaptive prior and unified Bayesian inference. Following hierarchical spatial regularization for local consistency, the converged states are decoupled into distinct static, dynamic, and temporal transition maps.</Fragment>
+</Figure>
 
-Use the `Picture` component to display images. If you have a figure in PDF format, you can pass in its path as the `src` prop and it will be converted into a web-friendly image automatically.
+## Comparison
 
-<Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-
-### Wide visual
-
-I constrained the maximum width of the text column to make sure it's readable even when the screen is wide. But images and other visuals should "break out" and take up more horizontal space: for this, try wrapping them in the `Wide` component.
-
-<Wide>
-  <Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-</Wide>
+<Figure>
+  <Comparison slot="figure" client:idle>
+    <Picture slot="itemOne" src={mtdmap} alt="MTD-Map with dynamic objects" />
+    <Picture slot="itemTwo" src={mtdmapWoDynamic} alt="MTD-Map without dynamic objects" />
+  </Comparison>
+  <Fragment slot="caption">Comparison slider showing MTD-Map results. Left: original map with dynamic objects. Right: cleaned map with dynamic objects removed.</Fragment>
+</Figure>
 
 ### Figure with caption
 

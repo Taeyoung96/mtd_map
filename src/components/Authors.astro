@@ -18,11 +18,11 @@ const groupedAuthors = authors.reduce((acc, author) => {
 }, {} as Record<string, Author[]>);
 ---
 
-<div class="links flex flex-col items-center gap-4">
+<div class="links flex flex-col items-center gap-1">
   {
     Object.entries(groupedAuthors).map(([institution, authors]) => (
       <div class="flex flex-col items-center text-center">
-        <div class="flex flex-row flex-wrap justify-center gap-x-4 text-xl">
+        <div class="flex flex-row flex-wrap justify-center gap-x-1 text-xl">
           {
             authors.map((author, index) => (
               <>
