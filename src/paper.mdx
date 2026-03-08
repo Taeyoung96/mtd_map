@@ -102,37 +102,19 @@ performance, subsequently reducing computational costs.
   <Fragment slot="caption">MTD-Map infers structural persistence from LiDAR streams by maintaining an augmented voxel state, updated via a stability-driven adaptive prior and unified Bayesian inference. Following hierarchical spatial regularization for local consistency, the converged states are decoupled into distinct static, dynamic, and temporal transition maps.</Fragment>
 </Figure>
 
-## Comparison
+## Qualitative Result
 
 <Figure>
   <Comparison slot="figure" client:idle>
     <Picture slot="itemOne" src={mtdmap} alt="MTD-Map with dynamic objects" />
     <Picture slot="itemTwo" src={mtdmapWoDynamic} alt="MTD-Map without dynamic objects" />
   </Comparison>
-  <Fragment slot="caption">Comparison slider showing MTD-Map results. Left: original map with dynamic objects. Right: cleaned map with dynamic objects removed.</Fragment>
+  <Fragment slot="caption">**Left**: MTD-Map result with dynamic points, **Right**: MTD-Map result without dynamic points.<br/>Visualizing MTD-Map results via the temporal transition map $\Psi$, showing static (<span style="color: gray">gray</span>) and quasi-static (<span style="color: blue">blue</span>, <span style="color: red">red</span>) components throughout, with dynamic objects (<span style="color: olive">olive</span>) present only in the unfiltered map (left).</Fragment>
 </Figure>
 
-### Figure with caption
+### Dynamic Object Removal Result
 
-Wrap a visual in a `Figure` component to add a caption.
-
-<Figure>
-  <Picture slot="figure" src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  <Fragment slot="caption">A photo of two dogs running side-by-side in shallow water, lossily compressed using the [DiffC algorithm](https://jeremyiv.github.io/diffc-project-page/).</Fragment>
-</Figure>
-
-### Comparison slider
-
-Use the `Comparison` component to compare two visuals with an interactive slider.
-
-<Comparison client:idle >
-  <Picture slot="itemOne" src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  <Picture slot="itemTwo" src={dogsTrue} alt="True photo of two dogs running side-by-side in shallow water" />
-</Comparison>
-
-### Tab panels
-
-Tab panels are a great way to display a labeled collection of related visuals without taking up too much space.
+Results of dynamic object removal with different visualization modes.
 
 <Tabs defaultValue="true">
   <TabsList>
@@ -160,48 +142,6 @@ Tab panels are a great way to display a labeled collection of related visuals wi
   </TabsContent>
 </Tabs>
 
-### Carousel
-
-A carousel is another useful pattern for a collection of visuals that don't necessarily have meaningful labels.
-
-<Carousel>
-  <CarouselSlide>
-    <Picture src={dogsTrue} alt="True photo of two dogs running side-by-side in shallow water" />
-  </CarouselSlide>
-  <CarouselSlide>
-    <Picture src={dogsDiffc} alt="Photo of two running dogs, lossily compressed using the DiffC algorithm" />
-  </CarouselSlide>
-  <CarouselSlide>
-    <Picture
-      src={dogsMsillm}
-      alt="Photo of two running dogs, lossily compressed using MS-ILLM"
-    />
-  </CarouselSlide>
-</Carousel>
-
-## Two columns
-
-Use the two columns component to display two columns of content. In this example, the first column contains a YouTube video embed and the second column contains an interactive 3D model viewer. By default, they display side by side, but if the screen is narrow enough (for example, on mobile), they're arranged vertically.
-
-<TwoColumns>
-  <YouTubeVideo slot="left" videoId="wjZofJX0v4M" />
-  <ModelViewer slot="right" src="/BoxVertexColors.glb" alt="A cube colored with a rainbow gradient" />
-</TwoColumns>
-
-## $\LaTeX$
-
-You can also add $\LaTeX$ formulas, rendered during the build process using [$\KaTeX$](https://katex.org/) so they're quick to load for visitors of your project page. You can write them inline, like this: $a^2 + b^2 = c^2$. Or, you can write them as a block:
-
-$$
-\int_a^b f(x) dx
-$$
-
-## Citation
-
-If you copy your bibliography into `./bibliography.bib`, you can cite papers using their BibTeX keys, and they'll be automatically formatted and included in the bibliography section at the end. For example: [@vaswani2017attention]. Note that these citations are distinct from footnotes[^mynote], which show up in a separate section if you use them.
-
-[^mynote]: On the web, they should really be called "endnotes", since each page constitutes a full document.
-
 ## Table
 
 Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
@@ -226,6 +166,6 @@ Displaying the BibTeX entry for your paper in a code block makes it easy to copy
 }
 ```
 
-## Bibliography
+## Acknowledgement
 
-[^ref]
+We used [Uni-Mapper](https://github.com/sparolab/uni-mapper) framework for map merge during our experiments.
