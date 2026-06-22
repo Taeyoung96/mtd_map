@@ -12,9 +12,9 @@ Robotics Lab, Research and Development Division, Hyundai Motor Company
 
 ---
 
-## 🌐 Project Page
+## Project Page
 
-👉 **https://taeyoung96.github.io/mtd_map/**
+**https://taeyoung96.github.io/mtd_map/**
 
 ---
 

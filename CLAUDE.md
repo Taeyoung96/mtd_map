@@ -127,3 +127,26 @@ npm run all:fix       # Run check + lint:fix + format:fix
 ## Code Blocks
 - Styled via `astro-expressive-code`
 - Configuration in `astro.config.ts` - don't manually theme code blocks
+
+## Project Status
+- Paper accepted at IROS 2026 (IEEE/RSJ International Conference on Intelligent Robots and Systems)
+- Authors: TaeYoung Kim, Gilhwan Kang, Tae Ihn Kim, Seungwon Song, Hun Keon Ko (Hyundai Motor Company Robotics Lab)
+- Deployed at: https://taeyoung96.github.io/mtd_map/ (requires repo to be public)
+
+## GitHub Pages
+- Repo must be **public** for GitHub Pages to work on free plan
+- After making public: Settings → Pages → Source → GitHub Actions
+- Remote uses SSH: `git@github.com:Taeyoung96/mtd_map.git`
+
+## SVG Figure Extraction
+- Paper figures stored as SVG in `/home/taeyoung/Downloads/IROS2026_clean/Figure/`
+- `figure_3.svg` contains 8 panels (2×4 grid) with base64-embedded JPEGs
+- Extract panels with Python: parse defs images, map via group transforms `translate(-1356,-229)`
+- Panel mapping: panel_2=Ground Truth, panel_3=HMM-MOS, panel_0=ELite, panel_4=MTD-Map(Ours)
+- Extracted assets saved to `src/assets/dor_*.jpg`
+
+## Table Styling in MDX
+- Wide markdown tables: use HTML `<table>` with `colspan` for grouped headers
+- Center table on page: `width:max-content; margin:0 auto`
+- `<code>` tags in table headers render with gray background highlight — avoid, use plain text
+- `conference` field rendered in `src/pages/index.astro` line 76; use `text-xl font-semibold` class
