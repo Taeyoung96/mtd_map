@@ -13,18 +13,11 @@ authors:
     institution: Robotics Lab, Research and Development Division, Hyundai Motor Company
   - name: Hun Keon Ko
     institution: Robotics Lab, Research and Development Division, Hyundai Motor Company
-    notes: ["*"]
-conference: Submitted to International Conference on Intelligent Robots and Systems (IROS) 2026
-notes:
-  - symbol: "*"
-    text: Corresponding author
+conference: "IROS 2026"
 links:
   - name: Paper
     url: https://github.com/RomanHauksson/academic-project-astro-template
     icon: ri:file-pdf-2-line
-  - name: Code
-    url: https://github.com/RomanHauksson/academic-project-astro-template
-    icon: ri:github-line
   - name: arXiv
     url: https://github.com/RomanHauksson/academic-project-astro-template
     icon: academicons:arxiv
@@ -58,9 +51,10 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/starwind/
 import { Comparison } from "./components/Comparison.tsx";
 
 import outside from "./assets/outside.mp4";
-import dogsDiffc from "./assets/dogs-diffc.png"
-import dogsTrue from "./assets/dogs-true.png"
-import dogsMsillm from "@/assets/dogs-msillm.jpg"
+import dorGroundTruth from "./assets/dor_ground_truth.jpg"
+import dorHmmMos from "./assets/dor_hmm_mos.jpg"
+import dorElite from "./assets/dor_elite.jpg"
+import dorMtdmap from "./assets/dor_mtdmap.jpg"
 import figOverview from "./assets/fig_overview.png"
 import mtdmap from "./assets/mtdmap.png"
 import mtdmapWoDynamic from "./assets/mtdmap_wo_dynamic.png"
@@ -114,44 +108,113 @@ performance, subsequently reducing computational costs.
 
 ### Dynamic Object Removal Result
 
-Results of dynamic object removal with different visualization modes.
+Results of dynamic object removal comparison across different methods.
 
-<Tabs defaultValue="true">
+<Tabs defaultValue="ground-truth">
   <TabsList>
-    <TabsTrigger value="true">Ground truth</TabsTrigger>
-    <TabsTrigger value="diffc">DiffC (Flux-dev)</TabsTrigger>
-    <TabsTrigger value="msillm">MS-ILLM</TabsTrigger>
+    <TabsTrigger value="ground-truth">Ground Truth</TabsTrigger>
+    <TabsTrigger value="hmm-mos">HMM-MOS</TabsTrigger>
+    <TabsTrigger value="elite">ELite</TabsTrigger>
+    <TabsTrigger value="mtdmap">MTD-Map (Ours)</TabsTrigger>
   </TabsList>
-  <TabsContent value="true">
+  <TabsContent value="ground-truth">
     <Picture
-      src={dogsTrue}
-      alt="True photo of two dogs running side-by-side in shallow water"
+      src={dorGroundTruth}
+      alt="Ground truth dynamic object removal result"
     />
   </TabsContent>
-  <TabsContent value="diffc">
+  <TabsContent value="hmm-mos">
     <Picture
-      src={dogsDiffc}
-      alt="Photo of two running dogs, lossily compressed using the DiffC algorithm"
+      src={dorHmmMos}
+      alt="HMM-MOS dynamic object removal result"
     />
   </TabsContent>
-  <TabsContent value="msillm">
+  <TabsContent value="elite">
     <Picture
-      src={dogsMsillm}
-      alt="Photo of two running dogs, lossily compressed using MS-ILLM"
+      src={dorElite}
+      alt="ELite dynamic object removal result"
+    />
+  </TabsContent>
+  <TabsContent value="mtdmap">
+    <Picture
+      src={dorMtdmap}
+      alt="MTD-Map (Ours) dynamic object removal result"
     />
   </TabsContent>
 </Tabs>
 
-## Table
+## Quantitative Result
 
-Add simple tables using [GitHub Flavored Markdown syntax](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables):
+Quantitative evaluation of dynamic object removal (DOR) in point cloud maps.<br/>**Bold** = best, <u>underline</u> = second best. Units are in %.
 
-| Model | Accuracy | F1 score | Training time (hours) |
-| :--- | :---: | :---: | :---: |
-| BERT-base | 0.89 | 0.87 | 4.5 |
-| RoBERTa-large | 0.92 | 0.91 | 7.2 |
-| DistilBERT | 0.86 | 0.84 | 2.1 |
-| XLNet | 0.90 | 0.89 | 6.8 |
+<table style="width:max-content;border-collapse:collapse;text-align:center;font-size:0.875rem;margin:0 auto;">
+  <thead>
+    <tr style="border-bottom:2px solid #e5e7eb;">
+      <th style="text-align:left;padding:6px 8px;" rowSpan={2}>Method</th>
+      <th style="padding:6px 8px;border-left:1px solid #e5e7eb;text-align:center;" colSpan={3}><em>KITTI</em> 00</th>
+      <th style="padding:6px 8px;border-left:1px solid #e5e7eb;text-align:center;" colSpan={3}><em>KITTI</em> 07</th>
+      <th style="padding:6px 8px;border-left:1px solid #e5e7eb;text-align:center;" colSpan={3}><em>HeLiMOS</em> 6593</th>
+      <th style="padding:6px 8px;border-left:1px solid #e5e7eb;text-align:center;" colSpan={3}><em>MOE</em> 02</th>
+    </tr>
+    <tr style="border-bottom:1px solid #e5e7eb;">
+      <th style="padding:4px 8px;border-left:1px solid #e5e7eb;text-align:center;">SA↑</th><th style="padding:4px 8px;text-align:center;">DA↑</th><th style="padding:4px 8px;text-align:center;">HA↑</th>
+      <th style="padding:4px 8px;border-left:1px solid #e5e7eb;text-align:center;">SA↑</th><th style="padding:4px 8px;text-align:center;">DA↑</th><th style="padding:4px 8px;text-align:center;">HA↑</th>
+      <th style="padding:4px 8px;border-left:1px solid #e5e7eb;text-align:center;">SA↑</th><th style="padding:4px 8px;text-align:center;">DA↑</th><th style="padding:4px 8px;text-align:center;">HA↑</th>
+      <th style="padding:4px 8px;border-left:1px solid #e5e7eb;text-align:center;">SA↑</th><th style="padding:4px 8px;text-align:center;">DA↑</th><th style="padding:4px 8px;text-align:center;">HA↑</th>
+    </tr>
+  </thead>
+  <tbody style="text-align:center;">
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="text-align:left;padding:6px 8px;">Removert</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">99.08</td><td style="padding:6px 8px;">68.53</td><td style="padding:6px 8px;">81.02</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">99.12</td><td style="padding:6px 8px;">34.06</td><td style="padding:6px 8px;">50.70</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">97.42</td><td style="padding:6px 8px;">40.65</td><td style="padding:6px 8px;">57.37</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">96.78</td><td style="padding:6px 8px;">27.20</td><td style="padding:6px 8px;">42.46</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="text-align:left;padding:6px 8px;">ERASOR</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">90.44</td><td style="padding:6px 8px;"><strong>96.37</strong></td><td style="padding:6px 8px;">93.31</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">89.19</td><td style="padding:6px 8px;"><strong>97.37</strong></td><td style="padding:6px 8px;"><u>93.10</u></td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">82.58</td><td style="padding:6px 8px;"><u>95.61</u></td><td style="padding:6px 8px;">88.62</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">94.55</td><td style="padding:6px 8px;"><u>99.38</u></td><td style="padding:6px 8px;"><strong>96.90</strong></td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="text-align:left;padding:6px 8px;">DUFOMap</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">99.19</td><td style="padding:6px 8px;">83.46</td><td style="padding:6px 8px;">90.64</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;"><u>99.14</u></td><td style="padding:6px 8px;">55.60</td><td style="padding:6px 8px;">74.25</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">98.08</td><td style="padding:6px 8px;">67.64</td><td style="padding:6px 8px;">80.07</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;"><u>96.42</u></td><td style="padding:6px 8px;">48.13</td><td style="padding:6px 8px;">64.21</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="text-align:left;padding:6px 8px;">OTD</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">94.93</td><td style="padding:6px 8px;">93.74</td><td style="padding:6px 8px;"><u>94.33</u></td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">94.64</td><td style="padding:6px 8px;">84.54</td><td style="padding:6px 8px;">89.31</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">97.93</td><td style="padding:6px 8px;">73.27</td><td style="padding:6px 8px;">83.83</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">95.67</td><td style="padding:6px 8px;">87.50</td><td style="padding:6px 8px;">91.40</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="text-align:left;padding:6px 8px;">HMM-MOS</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;"><strong>99.92</strong></td><td style="padding:6px 8px;">58.45</td><td style="padding:6px 8px;">73.76</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;"><strong>99.82</strong></td><td style="padding:6px 8px;">45.57</td><td style="padding:6px 8px;">67.44</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;"><strong>99.56</strong></td><td style="padding:6px 8px;">65.62</td><td style="padding:6px 8px;">79.10</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;"><strong>99.24</strong></td><td style="padding:6px 8px;">5.84</td><td style="padding:6px 8px;">11.04</td>
+    </tr>
+    <tr style="border-bottom:1px solid #f3f4f6;">
+      <td style="text-align:left;padding:6px 8px;">ELite</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">92.09</td><td style="padding:6px 8px;">89.24</td><td style="padding:6px 8px;">90.64</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">93.77</td><td style="padding:6px 8px;">90.27</td><td style="padding:6px 8px;">91.99</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">89.28</td><td style="padding:6px 8px;"><strong>95.80</strong></td><td style="padding:6px 8px;"><strong>92.43</strong></td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">82.93</td><td style="padding:6px 8px;"><strong>99.76</strong></td><td style="padding:6px 8px;">90.57</td>
+    </tr>
+    <tr style="border-bottom:2px solid #e5e7eb;">
+      <td style="text-align:left;padding:6px 8px;font-weight:600;">MTD-Map (Ours)</td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;"><u>99.47</u></td><td style="padding:6px 8px;"><u>95.28</u></td><td style="padding:6px 8px;"><strong>97.33</strong></td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">92.71</td><td style="padding:6px 8px;"><u>95.61</u></td><td style="padding:6px 8px;"><strong>94.13</strong></td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;"><u>98.51</u></td><td style="padding:6px 8px;">82.95</td><td style="padding:6px 8px;"><u>90.06</u></td>
+      <td style="border-left:1px solid #e5e7eb;padding:6px 8px;">95.95</td><td style="padding:6px 8px;">94.84</td><td style="padding:6px 8px;"><u>95.39</u></td>
+    </tr>
+  </tbody>
+</table>
 
 ## BibTeX citation
 

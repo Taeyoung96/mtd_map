@@ -73,7 +73,7 @@ const prefix = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
       </div>
       <div class="flex flex-col items-center gap-6">
         <Authors authors={authors} />
-        {conference && <div>{conference}</div>}
+        {conference && <div class="text-xl font-semibold">{conference}</div>}
         {notes && <Notes notes={notes} />}
         {links && <Links links={links} />}
       </div>
