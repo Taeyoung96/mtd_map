@@ -6,7 +6,7 @@ Official project page for the paper:
 
 TaeYoung Kim, Gilhwan Kang, Tae Ihn Kim, Seungwon Song, Hun Keon Ko
 
-Robotics Lab, Research and Development Division, Hyundai Motor Company
+Robotics Lab, Advanced Vehicle Platform Division, Hyundai Motor Company
 
 *Accepted to IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2026)*
 
