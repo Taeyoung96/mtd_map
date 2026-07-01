@@ -16,6 +16,10 @@ Robotics Lab, Advanced Vehicle Platform Division, Hyundai Motor Company
 
 **https://taeyoung96.github.io/mtd_map/**
 
+## Paper
+
+**arXiv:** https://arxiv.org/abs/2606.29469
+
 ---
 
 ## Overview
